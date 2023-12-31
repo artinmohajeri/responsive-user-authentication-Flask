@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <!-- <div class="alert alert-info container">
+        <strong>Info!</strong> Indicates a neutral informative change or action.
+    </div> -->
+    
+    <div class="container mt-5">
+        <h1>Welcome {{user.user_name}}</h1>
+        <h2>Your email is: {{user.email}}</h2>
+    </div>
+
+
+    <div class="container">
+        <h3>you can also update your email/username</h3><br><br>
+        <form action="#" , method="post">
+            {{form.hidden_tag()}}
+            <div class="mb-3">
+                <label class='form-label' for="username">username:</label>
+                {{form.user_name(class="form-control", id="username", type="username")}}
+            </div>
+            <div class="mb-3">
+                <label class='form-label' for="email">Email address:</label>
+                {{form.email(class="form-control", id="email", type="email")}}
+            </div>
+            {{form.submit(class="btn btn-primary", value="update", id="submit_btn", type="submit")}}
+
+        </form>
+    </div><br>
+
+    <div class="container">
+        <a class='btn btn-danger mt-5' href="{{url_for('delete_account')}}">Delete account</a>
+    </div>
+
+{% endblock %}
+

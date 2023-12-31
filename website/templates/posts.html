@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+<style>
+    .card {
+        position: relative;
+    }
+
+    .btn-close {
+        position: absolute;
+        right: 10px;
+    }
+</style>
+<div class="container mt-5">
+    <h1>Posts ↓↓↓</h1><br><br>
+
+    <div class="container">
+        <form class="mb-3" method="post" , action="#">
+            {{form.hidden_tag()}}
+            <label class="form-label" for="comment">Post:</label>
+            <!-- <textarea class="form-control" rows="5" id="comment"></textarea> -->
+            {{form.text(class="form-control", rows="5", id="post")}}<br>
+            {{form.submit(class="btn btn-primary", value="post", id="submit_btn", type="submit")}}
+        </form>
+    </div>
+
+</div><br><br><br>
+
+
+<div class="container">
+    {% for post in all_posts %}
+    <div class="post mb-5">
+        <div class="mb-2 ms-2">{{post.poster.user_name}}:</div>
+        <div class="card mb-3">
+            <div class="card-body">{{post.text}}
+                {% if current_user.id == post.user_id %}
+                    <a href="{{url_for('delete_post', post_id=post.id)}}" class="btn btn-close"></a>
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
